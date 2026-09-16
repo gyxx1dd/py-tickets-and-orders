@@ -2,6 +2,8 @@ from typing import Any
 
 from django.contrib.auth import get_user_model
 
+from db.models import User
+
 
 def create_user(username: str,
                 password: str,
@@ -31,7 +33,7 @@ def update_user(user_id: int,
                 email: str | None = None,
                 first_name: str | None = None,
                 last_name: str | None = None
-                ) -> None:
+                ) -> User:
     user_get = get_user_model().objects.get(id=user_id)
 
     if username:
@@ -44,4 +46,5 @@ def update_user(user_id: int,
         user_get.first_name = first_name
     if last_name:
         user_get.last_name = last_name
-    return user_get.save()
+    user_get.save()
+    return user_get
