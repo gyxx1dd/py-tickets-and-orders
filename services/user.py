@@ -44,4 +44,4 @@ def update_user(user_id: int,
         user_get.first_name = first_name
     if last_name:
         user_get.last_name = last_name
-    user_get.save()
+    return user_get.save()
